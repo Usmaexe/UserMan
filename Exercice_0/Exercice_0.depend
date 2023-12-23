@@ -1,0 +1,12 @@
+# depslib dependency file v1.0
+1703099841 source:c:\users\new hp\desktop\kanagwa_v2\s t u d i e s\cloud\p2\poo\tps\tp1v2 - source code\exercice_0\main.cpp
+	<iostream>
+	"Car.h"
+
+1703099901 c:\users\new hp\desktop\kanagwa_v2\s t u d i e s\cloud\p2\poo\tps\tp1v2 - source code\exercice_0\car.h
+	<iostream>
+
+1703099663 source:c:\users\new hp\desktop\kanagwa_v2\s t u d i e s\cloud\p2\poo\tps\tp1v2 - source code\exercice_0\car.cpp
+	<iostream>
+	"Car.h"
+
