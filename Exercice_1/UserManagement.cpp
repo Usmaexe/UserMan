@@ -69,21 +69,29 @@ bool UserManagement::setNewPassword(string username, string oldPassword, string 
 
 ///SETTER FOR A NEW USERNAME
 bool UserManagement::setNewUsername(User user,string username,string password){
-    string newUsername;
+    int userIndex = -1;
     if(password==user.getPassword()){
         for(unsigned int  i = 0 ; i < this->usersNumber ; i++){
             if(this->users[i].getUserName()==username){
-                    cout<<"InvalidUsername."<<endl;
+                    cout<<"Invalid Username."<<endl;
                     do{
                         cout<<"Username : ";
                         cin>>username;
                     }while(this->users[i].getUserName()==username);
             }
+            if(user.getUserName()==this->users[i].getUserName()){
+                userIndex = i;
+            }
+
         }
-        cout<<endl<<"Username was updated succefully"<<endl<<endl;
+        //catching error when index is out of range
+        this->users[userIndex].setUserName(username);
         user.setUserName(username);
+        cout<<endl<<"Username was updated succefully"<<endl<<endl;
         return true;
     }
+
+
     return false;
 
 }
@@ -95,6 +103,32 @@ User UserManagement::getRandomUser(){
     return this->users[randomIndex];
 }
 
+///LOGIN AND LOGOUT
+User UserManagement::login(string username, string password){
+    for (unsigned int i = 0 ; i < this->usersNumber ; i++){
+        //testing Lines
+        //cout<<"What is all this about : "<<username<<" "<<password<<endl;
+        if(this->users[i].getUserName()==username&&this->users[i].getPassword()==password){
+            this->users[i].setSession("OPEN");
+            return this->users[i];
+        }
+    }
+    cout<<"Username or password invalid !"<<endl;
+    return this->users[199];
+}
+
+User UserManagement::logout(string username){
+    for (unsigned int i = 0 ; i < this->usersNumber ; i++){
+        //testing Lines
+        //cout<<"What is all this about : "<<username<<" "<<password<<endl;
+        if(this->users[i].getUserName()==username){
+            this->users[i].setSession("CLOSED");
+            return this->users[i];
+        }
+    }
+    cout<<"Username or password invalid !"<<endl;
+    return this->users[199];
+}
 
 ///PRINT ALL USERS[]
 string UserManagement::printAllUsers(){

@@ -56,7 +56,6 @@ string UserDetails::decryptPassword(string cryptedPassword,int key){
         else if(islower(current)){
 
             if((int)current-key<97){
-            cout<<i<<(int)current-key<<current<<endl;
                 letter = ((int)current-key)+26;
                 decPass.append(1,(char)letter);
                 continue;

@@ -23,9 +23,11 @@ class User{
         string getHiddenEmail();
         string getEmail();
         string getUserName();//Not in the class attributs
+        string getSession();//Not in the class attributs
         void setPassword(string password);
         void setUserName(string username);//Not in the class attributs
         void setEmail(string email);//Not in the class attributs
+        void setSession(string email);//Not in the class attributs
         string getPassword();
         string printUserDetails();
         void exist();

@@ -43,14 +43,16 @@ int main()
     ///FIRST CLASS
     //Creation of Variables and Objects
     string password,cfpassword,oldPassword,newPassword,newPasswordRep;int key;
+    string newUsername;//used for username Update
 
     srand(time(0));
     key = rand()%10;//random value between 0 and 10
     UserDetails details;
-    User mohamed("username",details.encryptPassword("Olympiade14Inpt@/;@",key),"Mimit","Anou", "miitos@gmail.com","Iallaten-Nador","active");
-    /*
-    cout<<"Email :" << mohamed.getHiddenEmail()<<endl<<endl;
-    cout<<"Current Password : \n" << mohamed.getPassword()<<endl;
+    ///ALL THE METHODS ARE APPLIED TO THIS USER OBJECT CALLED MOHAMED
+    User mainUser("username",details.encryptPassword("Olympiade14Inpt@/;@",key),"Mimit","Anou", "miitos@gmail.com","Iallaten-Nador","active");
+
+    cout<<"Email :" << mainUser.getHiddenEmail()<<endl<<endl;
+    cout<<"Current Password : \n" << mainUser.getPassword()<<endl;
 
     do{
         cout<<"\nEnter New Password : ";
@@ -65,36 +67,37 @@ int main()
     }while(password!=cfpassword);
 
     //Here the UserDetails's function (encrypt password) is used to make sure that the password will be encrypted
-    mohamed.setPassword(details.encryptPassword(password,key));
-    key=29;
-    cout<<details.encryptPassword("sud",key)<<endl;
+    mainUser.setPassword(details.encryptPassword(password,key));
+
     cout<<"\n\nYour Updated Password is : " << details.decryptPassword(details.encryptPassword("suxqaAZzaxwd",key),key)<<endl<<endl;
     system("pause");
     cout<<endl;
-    */
-    cout<<"----Users List----\n" << mohamed.printUserDetails()<<endl<<endl;
+
+    cout<<"----Users List----\n" << mainUser.printUserDetails()<<endl<<endl;
     system("pause");
     cout<<endl;
 
+
     ///Users's Management and a testing user are created :
     UserManagement userManagement;
+
+    //test is created with the same username to test the adding method when entering already existing data
     User test("username",details.encryptPassword("Olympiade14Inpt@/;@",key),"Mimit","Anou", "miitos@gmail.com","Iallaten-Nador","active");
 
 
     ///ADDING AND DELETING A TEST USER
-    mohamed = userManagement.addUser(mohamed);
+    mainUser = userManagement.addUser(mainUser);
     test = userManagement.addUser(test);
     cout<<"----Users List After Adding the test user----\n"<<userManagement.printAllUsers()<<endl;
     userManagement.deleteUser(test);
     cout<<"----Users List After Deleting the test user----\n"<<userManagement.printAllUsers()<<endl;
-
     ///UPDATING THE PASSWORD for the user mohamed
     unsigned int t=0;
     do{
         if(t!=0){
             cout<<"\nError in updating your password ! Try again."<<endl<<endl;
         }
-        cout<<mohamed.getUserName()<<"["<<mohamed.getEmail()<<"] Enter :"<<endl<<"Old Password : ";
+        cout<<mainUser.getUserName()<<"["<<mainUser.getEmail()<<"] Enter :"<<endl<<"Old Password : ";
         cin>>oldPassword;
         oldPassword = details.encryptPassword(oldPassword,key);
         do{
@@ -105,22 +108,28 @@ int main()
         }while(newPassword!=newPasswordRep);
         newPassword = details.encryptPassword(newPassword,key);
         t++;
-    }while(!userManagement.setNewPassword(mohamed.getUserName(),oldPassword,newPassword));
-    //mohamed.setPassword(newPassword);
-    //the mohamed user in the list(users) of userManagment is updated,
-    //But the object mohamed is not
-    cout<<"----Users List After Updating mohamed's password----\n"<<userManagement.printAllUsers()<<endl;
+    }while(!userManagement.setNewPassword(mainUser.getUserName(),oldPassword,newPassword));
+    cout<<"----Users List After Updating main user's password----\n"<<userManagement.printAllUsers()<<endl;
 
 
     ///UPDATING THE USERNAME FOR A SPECIFIED USER
-    cout<<"Change the username for user["<< mohamed.getEmail() <<"]"<<endl;
+    cout<<"Change the username for user["<< mainUser.getEmail() <<"]"<<endl;
+    cout<<"Enter a new username : ";
+    cin>>newUsername;
     do{
         cout<<"Enter Password : ";
         cin >> password;
         password = details.encryptPassword(password,key);
-        cout<<password<<endl;
-    }while(!userManagement.setNewUsername(userManagement.getRandomUser(),"issem jadidd",password));
+    }while(!userManagement.setNewUsername(userManagement.getRandomUser(),newUsername,password));
+    //A random password is selected randomly to change its password
+    cout<<"----Users List After Updating username for a random user----\n"<<userManagement.printAllUsers()<<endl;
 
+
+    ///LOGIN AND LOGOUT
+    mainUser = userManagement.login(newUsername,password);
+    cout<<"----Users List After Opening the session for the main user ---\n"<<userManagement.printAllUsers()<<endl;
+    mainUser = userManagement.logout(newUsername);
+    cout<<"----Users List After Closing  the session for the main user ---\n"<<userManagement.printAllUsers()<<endl;
 
     cout<<endl;
     system("pause");

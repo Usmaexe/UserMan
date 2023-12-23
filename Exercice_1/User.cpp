@@ -44,6 +44,10 @@ string User::getPassword(){
     return this->password;
 }
 
+string User::getSession(){
+    return this->session;
+}
+
 ///SETTERS :
 void User::setPassword(string password){
     this->password = password;
@@ -56,6 +60,12 @@ void User::setUserName(string username){
 void User::setEmail(string email){
     this->email=email;
 }
+
+void User::setSession(string session){
+    this->session=session;
+}
+
+///TOSTRING
 string User::printUserDetails(){
     //string username,string password, string firstName, string lastName, string email, string adress, string session
     return "Username : "  + this->username + "\nPassword(crypted) : "  + this->getPassword() + "\nFirst name : "  + this->firstName + "\nLast Name : "  + this->lastName + "\nemail : "  + this->email + "\naddress : "  + this->address + "\nsession : "  + this->session;
