@@ -14,12 +14,10 @@ class User{
         string email;
         string address;
         string session;
-
     public :
         //Constructor
         User();
         User(string username,string password, string firstName, string lastName, string email, string adress, string session);
-
         string getHiddenEmail();
         string getEmail();
         string getUserName();//Not in the class attributs
@@ -31,10 +29,6 @@ class User{
         string getPassword();
         string printUserDetails();
         void exist();
-        //Deconstructor
-        //its used if we are allocating dynamic memory, in this case it will not be defined
-        //~User();
-
 };
 
 #endif // User

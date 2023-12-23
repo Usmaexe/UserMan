@@ -14,4 +14,3 @@ class Car{
         string moveForward();
         string stop();
 };
-

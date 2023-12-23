@@ -6,11 +6,10 @@ using namespace std;
 #ifndef USERMANAGEMENT_H
     #define USERMANAGEMENT_H
 
-//This class uses only dynamic memory allocation to intialize an array of users,
-//,b : Which is not good if you want to scale up our application
 class UserManagement{
     private :
-
+        //This class uses only dynamic memory allocation to intialize an array of users,
+        //Which is not good if you want to scale up our application
         User *users;
         UserDetails userDetails;
         size_t usersNumber;
@@ -25,7 +24,6 @@ class UserManagement{
         User login(string username, string password);
         User logout(string username);
         string printAllUsers();
-
 };
 
 #endif // USERMANAGEMENT
