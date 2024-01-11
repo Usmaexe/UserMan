@@ -1,0 +1,11 @@
+# depslib dependency file v1.0
+1704925863 source:a:\kanagwa_v2\s t u d i e s\cloud\p2\poo\tps\tp1v2 - source code\exercice_2\main.cpp
+	<iostream>
+	"Hero.h"
+
+1704933373 a:\kanagwa_v2\s t u d i e s\cloud\p2\poo\tps\tp1v2 - source code\exercice_2\hero.h
+	<iostream>
+
+1704933373 source:a:\kanagwa_v2\s t u d i e s\cloud\p2\poo\tps\tp1v2 - source code\exercice_2\hero.cpp
+	"Hero.h"
+
